@@ -304,26 +304,32 @@
 	"buffers":
 	[
 		{
-			"file": "/D/Work/TOPOLOGY OPTIMIZATION/MMAA/GCMMA-MMA-code-1.5/toy2.m",
+			"file": "_config.yml",
 			"settings":
 			{
-				"buffer_size": 1727,
+				"buffer_size": 1906,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/D/Work/TOPOLOGY OPTIMIZATION/MMAA/GCMMA-MMA-code-1.5/mmatoyinit.m",
+			"file": "_layouts/home.html",
 			"settings":
 			{
-				"buffer_size": 1739,
+				"buffer_size": 2479,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/D/Work/TOPOLOGY OPTIMIZATION/MMAA/GCMMA-MMA-code-1.5/mmatoymain.m",
+			"contents": "L = 1000\nW = 500\nOrder = [3 3]\nIgaTop2D(L, W, Order, Num, BoundCon, Vmax, penal, rmin)\n\n\nfunction NURBS = Geom_Mod(L, W, Order, Num, BoundCon)\nswitch BoundCon\n    case {1, 2, 3}\n        knots{1} = [0 0 1 1]; knots{2} = [0 0 1 1];\n        ControlPts(:,:,1) = [0 L; 0 0; 0 0; 1 1];\n        ControlPts(:,:,2) = [0 L; W W; 0 0; 1 1];\n    case 4\n        knots{1} = [0 0 0.5 1 1]; knots{2} = [0 0 1 1];\n        ControlPts(:,:,1) = [0 0 L; L 0 0; 0 0 0; 1 1 1];\n        ControlPts(:,:,2) = [W W L; L W W; 0 0 0; 1 1 1];\n    case 5\n        W = W/2;\n        knots{1} = [0 0 0 1 1 1]; knots{2} = [0 0 1 1];\n        ControlPts(:,:,1) = [0 W W; W W 0; 0 0 0; 1 sqrt(2)/2 1];\n        ControlPts(:,:,2) = [0 L L; L L 0; 0 0 0; 1 sqrt(2)/2 1];\nend\ncoefs = zeros(size(ControlPts));\ncoefs(1,:,:) = ControlPts(1,:,:).*ControlPts(4,:,:);\ncoefs(2,:,:) = ControlPts(2,:,:).*ControlPts(4,:,:);\ncoefs(3,:,:) = ControlPts(3,:,:).*ControlPts(4,:,:);\ncoefs(4,:,:) = ControlPts(4,:,:);\nNURBS = nrbmak(coefs, knots);\nNURBS = nrbdegelev(NURBS,Order);\nnrbplot(NURBS,[100 100],'light','on')\niknot_u = linspace(0,1,Num(1)); iknot_v = linspace(0,1,Num(2));\nNURBS = nrbkntins(NURBS,{setdiff(iknot_u,NURBS.knots{1}),setdiff(iknot_v,NU\nRBS.knots{2})});\nend\n\nfunction [CtrPts, Ele, GauPts] = Pre_IGA(NURBS)\n%% the unique knots in two parametric directions\nKnots.U = unique(NURBS.knots{1})';\nKnots.V = unique(NURBS.knots{2})';\n%% the information of control points including the physical coordinates, numbers, sequence\nCtrPts.Cordis = NURBS.coefs(:,:);\nCtrPts.Cordis(1,:) = CtrPts.Cordis(1,:)./CtrPts.Cordis(4,:); % the X Cartesian coordinates of control points;\nCtrPts.Cordis(2,:) = CtrPts.Cordis(2,:)./CtrPts.Cordis(4,:); % the Y Cartesian coordinates of control points;\nCtrPts.Cordis(3,:) = CtrPts.Cordis(3,:)./CtrPts.Cordis(4,:); % the Z Cartesian coordinates of control points;\nCtrPts.Num = prod(NURBS.number); % the total number of control points or basis functions;\nCtrPts.NumU = NURBS.number(1); % the total number of control points or basis functions in the first parametric;\nCtrPts.NumV = NURBS.number(2); % the total number of control points or basis functions in the second parametric;\nCtrPts.Seque = reshape(1:CtrPts.Num,CtrPts.NumU,CtrPts.NumV)';\n%% the information of the elements (knot spans) in the parametric space, including the numbers, sequence\nEle.NumU = numel(unique(NURBS.knots{1}))-1; % the number of elements in the first parametric direction\nEle.NumV = numel(unique(NURBS.knots{2}))-1; % the number of elements in the second parametric direction\nEle.Num = Ele.NumU*Ele.NumV; % the number of all elements in the structure\nEle.Seque = reshape(1:Ele.Num, Ele.NumU, Ele.NumV)';\nEle.KnotsU = [Knots.U(1:end-1) Knots.U(2:end)]; % the unique knots of the elements in the first parametric direction\nEle.KnotsV = [Knots.V(1:end-1) Knots.V(2:end)]; % the unique knots of the elements in the second parametric direction\nEle.CtrPtsNum = prod(NURBS.order);\nEle.CtrPtsNumU = NURBS.order(1); Ele.CtrPtsNumV = NURBS.order(2);\n[~, Ele.CtrPtsCon] = nrbbasisfun({(sum(Ele.KnotsU,2)./2)', (sum(Ele.KnotsV,2)./2)'}, NURBS);\n%% the information of the Gauss quadrature points in the parent space\n[GauPts.Weigh, GauPts.QuaPts] = Guadrature(3, numel(NURBS.order));\nEle.GauPtsNum = numel(GauPts.Weigh);\nGauPts.Num = Ele.Num*Ele.GauPtsNum;\nGauPts.Seque = reshape(1:GauPts.Num,Ele.GauPtsNum,Ele.Num)';\nGauPts.CorU = zeros(Ele.Num,Ele.GauPtsNum); GauPts.CorV = zeros(Ele.Num,Ele.GauPtsNum);\nfor ide = 1:Ele.Num\n    [idv, idu] = find(Ele.Seque == ide); % The two indices in two parametric directions for an element\n    Ele_Knot_U = Ele.KnotsU(idu,:); % The knot span in the first parametric direction for an element\n    Ele_Knot_V = Ele.KnotsV(idv,:); % The knot span in the second parametric direction for an element\n    for i = 1:Ele.GauPtsNum\n        GauPts.CorU(ide,i) = ((Ele_Knot_U(2)-Ele_Knot_U(1)).*GauPts.QuaPts(i,1) + (Ele_Knot_U(2)+Ele_Knot_U(1)))/2;\n        GauPts.CorV(ide,i) = ((Ele_Knot_V(2)-Ele_Knot_V(1)).*GauPts.QuaPts(i,2) + (Ele_Knot_V(2)+Ele_Knot_V(1)))/2;\nend\nend\nend\n\nfunction [quadweight,quadpoint] = Guadrature(quadorder, dim)\nquadpoint = zeros(quadorder^dim ,dim);\nquadweight = zeros(quadorder^dim,1);\nr1pt=zeros(quadorder,1);\nr1wt=zeros(quadorder,1);\nr1pt(1) = 0.774596669241483;\nr1pt(2) =-0.774596669241483;\nr1pt(3) = 0.000000000000000;\nr1wt(1) = 0.555555555555556;\nr1wt(2) = 0.555555555555556;\nr1wt(3) = 0.888888888888889;\nn=1;\nfor i = 1:quadorder\n    for j = 1:quadorder\n        quadpoint(n,:) = [ r1pt(i), r1pt(j)];\n        quadweight(n) = r1wt(i)*r1wt(j);\n        n = n+1;\nend\nend\nend\n\nfunction [DBoudary, F] = Boun_Cond(CtrPts, BoundCon, NURBS, Dofs_Num)\n%% boundary conditions\nswitch BoundCon\n    case 1 % Cantilever beam\n        DBoudary.CtrPtsOrd = CtrPts.Seque(:,1);\n        load.u = 1; load.v = 0.5;\n        [N, id] = nrbbasisfun([load.u; load.v], NURBS);\n        NBoudary.CtrPtsOrd = id'; NBoudary.N = N;\n    case 2 % MBB beam\n        DBoudary.CtrPtsOrd1 = CtrPts.Seque(1,1);\n        DBoudary.CtrPtsOrd2 = CtrPts.Seque(1,end);\n        load.u = 0.5; load.v = 1;\n        [N, id] = nrbbasisfun([load.u; load.v], NURBS);\n        NBoudary.CtrPtsOrd = id'; NBoudary.N = N;\n    case 3 % Michell-type structure\n        DBoudary.CtrPtsOrd1 = CtrPts.Seque(1,1);\n        DBoudary.CtrPtsOrd2 = CtrPts.Seque(1,end);\n        load.u = 0.5; load.v = 0;\n        [N, id] = nrbbasisfun([load.u; load.v], NURBS);\n        NBoudary.CtrPtsOrd = id'; NBoudary.N = N;\n    case 4 % L beam\n        DBoudary.CtrPtsOrd = CtrPts.Seque(:,1);\n        load.u = 1; load.v = 1;\n        [N, id] = nrbbasisfun([load.u; load.v], NURBS);\n        NBoudary.CtrPtsOrd = id'; NBoudary.N = N;\n    case 5 % A quarter annulus\n        DBoudary.CtrPtsOrd = CtrPts.Seque(:,end);\n        load.u = 0; load.v = 1;\n        [N, id] = nrbbasisfun([load.u; load.v], NURBS);\n        NBoudary.CtrPtsOrd = id'; NBoudary.N = N;\nend\n%% the force imposed on the structure\nF = zeros(Dofs_Num,1);\nswitch BoundCon\n    case {1,2,3,4}\n        F(NBoudary.CtrPtsOrd+CtrPts.Num) = -1*NBoudary.N;\n    case 5\n        F(NBoudary.CtrPtsOrd) = -1*NBoudary.N;\nend\nend\n\nfunction [Sh, Hs] = Shep_Fun(CtrPts, rmin)\nCtr_NumU = CtrPts.NumU; Ctr_NumV = CtrPts.NumV;\niH = ones(Ctr_NumU*Ctr_NumV*(2*(ceil(rmin)-1)+1)^2,1);\njH = ones(size(iH)); sH = zeros(size(iH));\nk = 0;\nfor j1 = 1:Ctr_NumV\n    for i1 = 1:Ctr_NumU\n        e1 = (j1-1)*Ctr_NumU+i1;\n        for j2 = max(j1-(ceil(rmin)-1),1):min(j1+(ceil(rmin)-1),Ctr_NumV)\n            for i2 = max(i1-(ceil(rmin)-1),1):min(i1+(ceil(rmin)-1),Ctr_NumU)\n                e2 = (j2-1)*Ctr_NumU+i2;\n                k = k+1;\n                iH(k) = e1;\n                jH(k) = e2;\n                theta = sqrt((j1-j2)^2+(i1-i2)^2)./rmin/sqrt(2);\n                sH(k) = (max(0, (1-theta)).^6).*(35*theta.^2 + 18*theta + 3);\n            end\n        end\n    end\nend\nSh = sparse(iH,jH,sH); Hs = sum(Sh,2);\nend\n\nfunction [KE, dKE, dv_dg] = Stiff_Ele2D(X, penal, Emin, DH, CtrPts,Ele, GauPts, dRu, dRv)\nKE = cell(Ele.Num,1);\ndKE = cell(Ele.Num,1);\ndv_dg = zeros(GauPts.Num,1);\nNen = Ele.CtrPtsNum;\nfor ide = 1:Ele.Num\n    [idv, idu] = find(Ele.Seque == ide); % The two idices in two parametric directions for an element\n    Ele_Knot_U = Ele.KnotsU(idu,:); % The knot span in the first parametric direction for an element\n    Ele_Knot_V = Ele.KnotsV(idv,:); % The knot span in the second parametric direction for an element\n    Ele_NoCtPt = Ele.CtrPtsCon(ide,:); % The number of control points in an element\n    Ele_CoCtPt = CtrPts.Cordis(1:2,Ele_NoCtPt); % The coordinates of the control points in an element\n    Ke = zeros(2*Nen,2*Nen);\n    dKe = cell(Ele.GauPtsNum,1);\n    for i = 1:Ele.GauPtsNum\n        GptOrder = GauPts.Seque(ide, i);\n        dR_dPara = [dRu(GptOrder,:); dRv(GptOrder,:)];\n        dPhy_dPara = dR_dPara*Ele_CoCtPt';\n        J1 = dPhy_dPara;\n        dR_dPhy = inv(J1)*dR_dPara;\n        Be(1,1:Nen) = dR_dPhy(1,:); Be(2,Nen+1:2*Nen) = dR_dPhy(2,:);\n        Be(3,1:Nen) = dR_dPhy(2,:); Be(3,Nen+1:2*Nen) = dR_dPhy(1,:);\n        dPara_dPare(1,1) = (Ele_Knot_U(2)-Ele_Knot_U(1))/2; % the mapping from the parametric space to the parent space\n        dPara_dPare(2,2) = (Ele_Knot_V(2)-Ele_Knot_V(1))/2;\n        J2 = dPara_dPare; J = J1*J2; % the mapping from the physical space to the parent space;\n        weight = GauPts.Weigh(i)*det(J); % Weight factor at this point\n        Ke = Ke + (Emin+X.GauPts(GptOrder,:).^penal*(1-Emin))*weight*(Be'*DH*Be);\n        dKe{i} = (penal*X.GauPts(GptOrder,:).^(penal-1)*(1-Emin))*weight*(Be'*DH*Be);\n        dv_dg(GptOrder) = weight;\n    end\n    KE{ide} = Ke;\n    dKE{ide} = dKe;\nend\nend\n\nfunction [K] = Stiff_Ass2D(KE, CtrPts, Ele, Dim, Dofs_Num)\nII = zeros(Ele.Num*Dim*Ele.CtrPtsNum*Dim*Ele.CtrPtsNum,1);\nJJ = II; KX = II;\nntriplets = 0;\nfor ide = 1:Ele.Num\n    Ele_NoCtPt = Ele.CtrPtsCon(ide,:);\n    edof = [Ele_NoCtPt,Ele_NoCtPt+CtrPts.Num];\n    for krow = 1:numel(edof)\n        for kcol = 1:numel(edof)\n            ntriplets = ntriplets+1;\n            II(ntriplets) = edof(krow);\n            JJ(ntriplets) = edof(kcol);\n            KX(ntriplets) = KE{ide}(krow,kcol);\n        end\n    end\nend\nK = sparse(II,JJ,KX,Dofs_Num,Dofs_Num); K = (K+K')/2;\nend\n\nfunction U = Solving(CtrPts, DBoudary, Dofs, K, F, BoundCon)\nswitch BoundCon\n    case {1, 4, 5}\n        U_fixeddofs = DBoudary.CtrPtsOrd;\n        V_fixeddofs = DBoudary.CtrPtsOrd + CtrPts.Num;\n    case {2,3}\n        U_fixeddofs = DBoudary.CtrPtsOrd1;\n        V_fixeddofs = [DBoudary.CtrPtsOrd1; DBoudary.CtrPtsOrd2] + CtrPts.Num;\nend\nDofs.Ufixed = U_fixeddofs; Dofs.Vfixed = V_fixeddofs;\nDofs.Free = setdiff(1:Dofs.Num,[Dofs.Ufixed; Dofs.Vfixed]);\nU = zeros(Dofs.Num,1);\nU(Dofs.Free) = K(Dofs.Free,Dofs.Free)\\F(Dofs.Free);\nend\n\nfunction X = OC(X, R, Vmax, Sh, Hs, dJ_dp, dv_dp)\nl1 = 0; l2 = 1e9; move = 0.2;\nwhile (l2-l1)/(l1+l2) > 1e-3\n    lmid = 0.5*(l2+l1);\n    X.CtrPts_new = max(0,max(X.CtrPts-move, min(1, min(X.CtrPts+move,X.CtrPts.*sqrt(-dJ_dp./dv_dp/lmid)))));\n    X.CtrPts_new = (Sh*X.CtrPts_new)./Hs;\n    X.GauPts = R*X.CtrPts_new;\n    if mean(X.GauPts(:)) > Vmax\n        l1 = lmid;\n    else\n        l2 = lmid;\n    end\nend\nend\n\nfunction [DenFied, Pos] = Plot_Data(Num, NURBS)\nbdwidth = 5; topbdwidth = 30; scnsize = get(0,'ScreenSize');\nPos.p1 = [bdwidth, 3/5*scnsize(4)+bdwidth-50, scnsize(3)/2-2*bdwidth, 2*scnsize(4)/5-(topbdwidth+bdwidth)];\nPos.p2 = [Pos.p1(1)+scnsize(3)/2, Pos.p1(2), Pos.p1(3), Pos.p1(4)];\nPos.p3 = [bdwidth, 1/6*scnsize(4)+bdwidth-100, scnsize(3)/2-2*bdwidth, 2*scnsize(4)/5-(topbdwidth + bdwidth)];\nPos.p4 = [Pos.p1(1)+scnsize(3)/2, Pos.p3(2), Pos.p3(3), Pos.p3(4)];\nUknots = linspace(0,1,10*Num(1)); Vknots = linspace(0,1,10*Num(2));\n[N_f, id_f] = nrbbasisfun({Uknots, Vknots}, NURBS);\n[PCor_U,PCor_W] = nrbeval(NURBS, {Uknots, Vknots});\nPCor_U = PCor_U./PCor_W;\nPCor_Ux = reshape(PCor_U(1,:),numel(Uknots),numel(Vknots))';\nPCor_Uy = reshape(PCor_U(2,:),numel(Uknots),numel(Vknots))';\nDenFied.N = N_f; DenFied.id = id_f;\nDenFied.U = Uknots; DenFied.V = Vknots;\nDenFied.Ux = PCor_Ux; DenFied.Uy = PCor_Uy;\nend\n\nfunction [X] = Plot_Topy(X, GauPts, CtrPts, DenFied, Pos)\nh1 = figure(1); clf; set(h1,'Position',Pos.p1, 'color',[1 1 1]);\nplot3(CtrPts.Cordis(1,:),CtrPts.Cordis(2,:),X.CtrPts,'.','color',[0.5 0 0.8]);\naxis equal;\nh2 = figure(2); clf; set(h2,'Position',Pos.p1,'color',[1 1 1]);\nplot3(GauPts.PCor(1,:),GauPts.PCor(2,:),X.GauPts,'.','color',[0.5 0 0.8]);\naxis equal;\nh3 = figure(3); clf; set(h3,'Position',Pos.p2,'color',[1 1 1]);\nX.DDF = sum(DenFied.N.*X.CtrPts(DenFied.id),2);\nX.DDF = reshape(X.DDF,numel(DenFied.U),numel(DenFied.V))';\nsurf(DenFied.Ux,DenFied.Uy,X.DDF); shading interp; colormap(jet(256)); alpha(0.5);\naxis equal; grid off;\nh4 = figure(4); clf; set(h4,'Position',Pos.p3,'color',[1 1 1]);\nGauPts_PCor = GauPts.PCor(1:2, X.GauPts>=0.5);\nplot(GauPts_PCor(1,:),GauPts_PCor(2,:),'.','color',[0.5 0 0.8]);\naxis equal; axis off;\nh5 = figure(5); clf; set(h5,'Position',Pos.p4,'color',[1 1 1]);\ncontourf(DenFied.Ux, DenFied.Uy, X.DDF, [0.5 0.5], 'facecolor', [0.5 0 0.8], 'edgecolor', [1 1 1]);\naxis equal; axis off;\nend\n\nfunction IgaTop2D(L, W, Order, Num, BoundCon, Vmax, penal, rmin)\n%% Material properties\npath = genpath(pwd); addpath(path);\nE0 = 1; Emin = 1e-9; nu = 0.3; DH=E0/(1-nu^2)*[1 nu 0; nu 1 0; 0 0 (1-nu)/2];\nNURBS = Geom_Mod(L, W, Order, Num, BoundCon); close all\n%% Preparation for IGA\n[CtrPts, Ele, GauPts] = Pre_IGA(NURBS);\nDim = numel(NURBS.order); Dofs.Num = Dim*CtrPts.Num;\n[DBoudary, F] = Boun_Cond(CtrPts, BoundCon, NURBS, Dofs.Num);\n%% Initialization of control design variables\nX.CtrPts = ones(CtrPts.Num,1);\nGauPts.Cor = [reshape(GauPts.CorU',1,GauPts.Num); reshape(GauPts.CorV',1,GauPts.Num)];\n[GauPts.PCor,GauPts.Pw] = nrbeval(NURBS, GauPts.Cor);\nGauPts.PCor = GauPts.PCor./GauPts.Pw;\n[N, id] = nrbbasisfun(GauPts.Cor, NURBS);\nR = zeros(GauPts.Num, CtrPts.Num);\nfor i = 1:GauPts.Num, R(i,id(i,:)) = N(i,:); end\nR = sparse(R);\n[dRu, dRv] = nrbbasisfunder(GauPts.Cor, NURBS);\nX.GauPts = R*X.CtrPts;\n%% Smoothing mechanism\n[Sh, Hs] = Shep_Fun(CtrPts, rmin);\n%% Start optimization in a loop\nchange = 1; nloop = 150; Data = zeros(nloop,2); Iter_Ch = zeros(nloop,1);\n[DenFied, Pos] = Plot_Data(Num, NURBS);\nfor loop = 1:nloop\n    %% IGA to evaluate the displacement responses\n    [KE, dKE, dv_dg] = Stiff_Ele2D(X, penal, Emin, DH, CtrPts, Ele, GauPts, dRu, dRv);\n    [K] = Stiff_Ass2D(KE, CtrPts, Ele, Dim, Dofs.Num);\n    U = Solving(CtrPts, DBoudary, Dofs, K, F, BoundCon);\n    %% Objective function and sensitivity analysis\n    J = 0;\n    dJ_dg = zeros(GauPts.Num,1);\n    for ide = 1:Ele.Num\n        Ele_NoCtPt = Ele.CtrPtsCon(ide,:);\n        edof = [Ele_NoCtPt,Ele_NoCtPt+CtrPts.Num];\n        Ue = U(edof,1);\n        J = J + Ue'*KE{ide}*Ue;\n        for i = 1:Ele.GauPtsNum\n            GptOrder = GauPts.Seque(ide, i);\n            dJ_dg(GptOrder) = -Ue'*dKE{ide}{i}*Ue;\n        end\n    end\nData(loop,1) = J; Data(loop,2) = mean(X.GauPts(:));\ndJ_dp = R’*dJ_dg; dJ_dp = Sh*(dJ_dp./Hs);\ndv_dp = R’*dv_dg; dv_dp = Sh*(dv_dp./Hs);\n%% Print and plot results\nfprintf(' It.:%5i Obj.:%11.4f Vol.:%7.3fch.:%7.3f\\n',loop,J,mean(X.GauPts(:)),change);\n[X] = Plot_Topy(X, GauPts, CtrPts, DenFied, Pos);\nif change < 0.01, break; end\n%% Optimality criteria to update design variables\nX = OC(X, R, Vmax, Sh, Hs, dJ_dp, dv_dp);\nchange = max(abs(X.CtrPts_new(:)-X.CtrPts(:))); Iter_Ch(loop) = change;\nX.CtrPts = X.CtrPts_new;\nend\nend\n\n\nIgaTop2D(10, 5, [1 1], [161 81], 1, 0.2, 3, 2)",
+			"file": "/D/codes/pht-topology/problems/IGAtop/main.asv",
+			"file_size": 14747,
+			"file_write_time": 132679540168262815,
 			"settings":
 			{
-				"buffer_size": 2606,
+				"buffer_size": 14404,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		}
@@ -428,10 +434,21 @@
 	"expanded_folders":
 	[
 		"/D/codes/website",
-		"/D/codes/website/_includes"
+		"/D/codes/website/_layouts",
+		"/D/codes/website/_posts"
 	],
 	"file_history":
 	[
+		"/D/codes/website/_layouts/about.html",
+		"/D/codes/website/_layouts/home.html",
+		"/D/codes/website/tags.html",
+		"/D/codes/website/_includes/social.html",
+		"/D/codes/website/_includes/footer.html",
+		"/D/codes/website/projects.md",
+		"/D/codes/website/website.sublime-project",
+		"/D/Work/TOPOLOGY OPTIMIZATION/MMAA/GCMMA-MMA-code-1.5/mmatoymain.m",
+		"/D/Work/TOPOLOGY OPTIMIZATION/MMAA/GCMMA-MMA-code-1.5/mmatoyinit.m",
+		"/D/Work/TOPOLOGY OPTIMIZATION/MMAA/GCMMA-MMA-code-1.5/toy2.m",
 		"/D/Work/TOPOLOGY OPTIMIZATION/MMAA/GCMMA-MMA-code-1.5/kktcheck.m",
 		"/D/codes/pht-topology/problems/1_cantilever/topo.m",
 		"/D/codes/pht-topology/pht/elasticity2D/CMutils/mmasub.m",
@@ -549,17 +566,7 @@
 		"/C/Users/Anurag Gupta/Downloads/cantilever_modal.py",
 		"/D/codes/examples/to/to.ipynb",
 		"/C/Users/Shubham/Dropbox/DRDL (1)/november-2020/1. report/07.Chapters/Chapter6/Chapter6.tex",
-		"/C/Users/Shubham/Dropbox/DRDL (1)/november-2020/1. report/07.Chapters/Chapter1/Chapter1.tex",
-		"/C/Users/Shubham/Dropbox/DRDL (1)/november-2020/1. report/07.Chapters/Chapter4/Chapter4.tex",
-		"/C/Users/Shubham/Dropbox/DRDL (1)/november-2020/1. report/07.Chapters/Chapter2/Chapter2.tex",
-		"/C/Users/Shubham/Dropbox/DRDL (1)/november-2020/1. report/07.Chapters/Chapter3/Chapter3.tex",
-		"/C/Users/Shubham/Dropbox/DRDL (1)/november-2020/1. report/07.Chapters/Chapter5/Chapter5.tex",
-		"/C/Users/Shubham/Dropbox/DRDL (1)/november-2020/1. report/07.Chapters/Chapter8/Chapter8.tex",
-		"/C/Users/Shubham/Dropbox/DRDL (1)/november-2020/1. report/thesis.out",
-		"/C/Users/Shubham/Dropbox/DRDL (1)/november-2020/1. report/thesis.log",
-		"/C/Users/Shubham/Dropbox/DRDL (1)/november-2020/1. report/07.Chapters/Chapter7/Chapter7.tex",
-		"/C/Users/Shubham/Dropbox/DRDL (1)/november-2020/1. report/report.sublime-project",
-		"/C/Users/Shubham/Dropbox/DRDL (1)/november-2020/1. report/thesis.tex"
+		"/C/Users/Shubham/Dropbox/DRDL (1)/november-2020/1. report/07.Chapters/Chapter1/Chapter1.tex"
 	],
 	"find":
 	{
@@ -599,27 +606,29 @@
 			[
 				{
 					"buffer": 0,
-					"file": "/D/Work/TOPOLOGY OPTIMIZATION/MMAA/GCMMA-MMA-code-1.5/toy2.m",
+					"file": "_config.yml",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1727,
+						"buffer_size": 1906,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1514,
+								1514
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Objective-C/Objective-C.sublime-syntax"
+							"syntax": "Packages/YAML/YAML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 342.0,
+						"translation.y": 228.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -627,27 +636,29 @@
 				},
 				{
 					"buffer": 1,
-					"file": "/D/Work/TOPOLOGY OPTIMIZATION/MMAA/GCMMA-MMA-code-1.5/mmatoyinit.m",
+					"file": "_layouts/home.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1739,
+						"buffer_size": 2479,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1364,
+								1364
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Objective-C/Objective-C.sublime-syntax"
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 285.0,
+						"translation.y": 171.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -655,29 +666,27 @@
 				},
 				{
 					"buffer": 2,
-					"file": "/D/Work/TOPOLOGY OPTIMIZATION/MMAA/GCMMA-MMA-code-1.5/mmatoymain.m",
+					"file": "/D/codes/pht-topology/problems/IGAtop/main.asv",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2606,
+						"buffer_size": 14404,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1926,
-								1931
+								0,
+								14404
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Objective-C/Objective-C.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 412.0,
+						"translation.y": 6627.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -763,7 +772,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 287.0,
+	"side_bar_width": 224.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
