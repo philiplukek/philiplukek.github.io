@@ -19,6 +19,37 @@ layout: default
     </ul>
   </nav>
 
+  <div class="anchor" id="work"></div>
+    <section class="work theme-dark" hash="work" label="Work">
+      <h2>
+        <svg class="svg-symbol" role="img">
+          <title>Featured Works</title>
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#featured-works"></use>
+        </svg>
+      </h2>
+      <ul class="cards">
+        <li>
+          <div class="card">
+            <div class="front"><img src="/pic.jpg"></div>
+            <div class="back">
+              <h3>About</h3>
+              <p>
+                Researcher
+                Moviebuff
+                Bookworm
+              </p>
+              <a 
+                class="link"
+                target="_blank" 
+                href="{{ site.url }}/about"
+                title="Everything about me"
+              >Explore now &rarr;</a>
+            </div>
+          </div>
+        </li>
+        </ul>
+    </section>
+
 
   {%- if site.posts.size > 0 -%}
   <ul class="post-list">
