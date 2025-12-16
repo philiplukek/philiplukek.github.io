@@ -131,7 +131,7 @@ title: Publications
       </div>
 
       <div class="pub-authors">
-        Abhinav Gupta, <strong>Philip Luke K</strong>, Bhagath M, Rajib Chowdhury, Anupam Chakrabarti
+        Abhinav Gupta, Bhagath M, <strong>Philip Luke K</strong>, Rajib Chowdhury, Anupam Chakrabarti
       </div>
 
       <div class="pub-meta">
@@ -186,6 +186,14 @@ title: Publications
         <div class="conf-main">
             <div class="conf-title">
                 From sketch to structure: A unified and efficient framework for optimal design with isogeometric methods.
+                <a
+                class="conf-tag"
+                href="/assets/images/poster_usnccm18.pdf"
+                target="_blank"
+                rel="noopener"
+                >
+                Poster
+            </a>
             </div>
             <div class="conf-name">
                 18th U.S. National Congress on Computational Mechanics (USNCCM18)

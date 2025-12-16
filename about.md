@@ -1,8 +1,8 @@
 ---
 layout: about
 title: About
+permalink: /about/
 avatar: /assets/images/philip_avatar.jpg
-
 ---
 
 In the time that I am not reading, watching, travelling or eating; I try to write codes that can make the life of the next generation engineer, easier. 
