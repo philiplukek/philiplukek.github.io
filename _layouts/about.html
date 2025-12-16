@@ -2,30 +2,87 @@
 layout: default
 ---
 
-<div class="about-page">
-  <head>
+<section class="about-page">
+
+  <section class="about-header">
+
+    {% if page.avatar %}
+      <img
+        class="about-avatar"
+        src="{{ page.avatar | relative_url }}"
+        alt="{{ site.author }}"
+      >
+    {% elsif site.moving.avatar_path %}
+      <img
+        class="about-avatar"
+        src="{{ site.moving.avatar_path | relative_url }}"
+        alt="{{ site.author }}"
+      >
+    {% endif %}
+
+    <div class="about-info">
+      <h1 class="about-name">{{ site.author }}</h1>
+
+      {% if site.moving.about_you %}
+        <p class="about-description">
+          {{ site.moving.about_you }}
+        </p>
+      {% endif %}
+
+      <!-- Contact icons -->
+      <div class="about-contacts">
+        <a href="mailto:k.philip.luke@gmail.com" aria-label="Email">
+          <img src="{{ '/assets/icons/gmail.svg' | relative_url }}" alt="Email">
+        </a>
+        <a href="https://www.linkedin.com/in/philiplukek" target="_blank" aria-label="LinkedIn">
+          <img src="{{ '/assets/icons/linkedin.svg' | relative_url }}" alt="LinkedIn">
+        </a>
+        <a href="https://github.com/philiplukek" target="_blank" aria-label="GitHub">
+          <img src="{{ '/assets/icons/github.svg' | relative_url }}" alt="GitHub">
+        </a>
+        <a href="https://scholar.google.com/citations?user=29UszrEAAAAJ" target="_blank" aria-label="Google Scholar">
+          <img src="{{ '/assets/icons/scholar.svg' | relative_url }}" alt="Google Scholar">
+        </a>
+        <a href="tel:+918547082517" aria-label="Phone">
+          <img src="{{ '/assets/icons/phone.svg' | relative_url }}" alt="Phone Number">
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="about-content">
+    {{ content }}
+  </section>
+
+</section>
+
+
+
+<!-- <div class="about-page"> -->
+  <!-- <head>
     <title>{{ site.author }}</title>
-  </head>
-  <div class="post-back">
+  </head> -->
+  <!-- <div class="post-back">
     <a class="black-link" href="{{ site.url | relative_url }}"> ← {{ site.moving.back_to }} </a>
-  </div>
-  <div class="about-header">
+  </div> -->
+  <!-- <div class="about-header">
     {%- if site.moving.avatar_url -%}
     <img class="about-avatar" src="{{ site.moving.avatar_url }}" />
     {%- endif -%} {%- if site.author -%}
     <div class="about-info">
       <div class="about-your-name">
         {{ site.author | escape }}
-      </div>
-      {%- endif -%} {%- if site.moving.about_you -%}
+      </div> -->
+      <!-- {%- endif -%} {%- if site.moving.about_you -%}
       <p class="about-description">
         {{ site.moving.about_you | escape }}
       </p>
-      {%- endif -%} {%- include social.html -%}
-    </div>
-  </div>
+      <!-- {%- endif -%} {%- include social.html -%} -->
+    <!-- </div>
+  </div> -->
 
-  <div class="about-content e-content" itemprop="articleBody">
+  <!-- <div class="about-content e-content" itemprop="articleBody">
     {{ content }}
   </div>
-</div>
+</div> -->

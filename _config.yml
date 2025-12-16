@@ -16,8 +16,8 @@ show_excerpts: false # set to true to show excerpts on the homepage
 # refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this
 moving:
   # avatar_url: "https://www.notion.so/front/shared/illustrations/use-case-wiki.png" # avatar in about page
-  avatar_path: "./pic.jpg" # avatar in about page
-  about_you: Research Scholar, Indian Institute of Technology Roorkee # short description about you in about page
+  avatar_path: "/assets/images/philip.jpg" # avatar in about page
+  about_you: Engineer | Researcher | Developer   # short description about you in about page
   date_format: "%b %d" # date format of posts in home page
   back_to: "Home" # In the post page, you have a back button above the title, you can custom the text by yourself.
 
@@ -26,13 +26,13 @@ moving:
     # twitter: iitrabhi
     github:  philiplukek
     # scholar: UfWvIkEAAAAJ
-    # researchgate: Abhinav_Gupta52
+    # researchgate: 
     # rss: RSS
     # dribbble: 
     # facebook: huangyz0918
     # flickr:   
     instagram: plk_abides
-    # linkedin: yizheng-huang
+    linkedin: philiplukek
     # pinterest: 
     # youtube: UCpj8oznjjLwVe5KHOGNrvnQ
     # youtube_channel: 
@@ -59,6 +59,6 @@ plugins:
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 google_analytics:
 
-# Text under the icons in footer
-footer-text:
-theme: jekyll-theme-leap-day
+# # Text under the icons in footer
+# footer-text:
+# theme: jekyll-theme-leap-day

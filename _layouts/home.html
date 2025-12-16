@@ -2,114 +2,42 @@
 layout: default
 ---
 
-<link rel="stylesheet" href="mystyle.css">
+<section class="home">
 
-<div class="home">
-  <head>
-      <title>{{ site.title }}</title>
-  </head>
-  <div class="home-title">
-    <p class="home-heading">{{ site.title }}</p>
-  </div>
-  <div class="under-construction-banner">
-  🚧 <span>Website Under Construction</span> 🚧
-  </div>
+  <section class="home-intro">
 
+    <div class="intro-content">
 
-  <nav>
-    <ul>
-      <li><a class="link" href="https://www.philipluke.com/tags">Tags</a></li>
-      <li><a class="link" href="https://www.philipluke.com/projects">Projects</a></li>
-      <li><a class="link" href="https://www.philipluke.com/about">About</a></li>
-      <li><a class="link" href="https://computationalmechanics.in/">Lab</a></li>
-    </ul>
-  </nav>
+      {{ content }}
 
-  <div class="flip-card">
-  <div class="flip-card-inner">
-    <div class="flip-card-front">
-      <img src="philip.png" alt="Avatar" style="width:300px;height:300px;">
+      <!-- <p class="intro-name">
+        PHILIP LUKE K
+      </p>
+
+      <p class="intro-lead">
+        I am a researcher in <strong>computational mechanics</strong> with primary
+        interests in <strong>finite element analysis</strong> and
+        <strong>structural optimization</strong>.
+      </p>
+
+      <p class="intro-body">
+        I have a background in civil and structural engineering with a doctorate
+        in structural mechanics. My work focuses on the development of efficient
+        numerical methods for analysis and optimization of complex engineering
+        systems. I am passionate about scientific computing and enjoy developing
+        research-oriented codes aimed at advancing analysis and design
+        methodologies for next-generation engineers.
+      </p> -->
+
     </div>
-    <div class="flip-card-back">
-      <h1>Philip Luke K</h1>
-      <p>Researcher
-        Moviebuff
-        Bookworm</p>
-      <a 
-        class="launch-button"
-        target="_blank" 
-        href="https://www.philipluke.com/about"
-        title="Everything about me"
-      >Explore now &rarr;</a>
+
+    <div class="intro-photo">
+      <img
+        src="{{ '/assets/images/philip.jpg' | relative_url }}"
+        alt="Philip Luke K"
+      >
     </div>
-  </div>
-</div>
 
-  <!-- <div class="anchor" id="work"></div>
-    <section class="work theme-dark" hash="work" label="Work">
-      <h2>
-        <svg class="svg-symbol" role="img">
-          <title>Featured Works</title>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#featured-works"></use>
-        </svg>
-      </h2>
-      <ul class="cards">
-        <li>
-          <div class="card">
-            <!-- <div class="front"><img src="../pic.jpg"></div> -->
-            <!-- <div class="front"><img src="https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg"></div>
-            <div class="back">
-              <h3>About</h3>
-              <p>
-                Researcher
-                Moviebuff
-                Bookworm
-              </p>
-              <a 
-                class="launch-button"
-                target="_blank" 
-                href="{{ site.url }}/about"
-                title="Everything about me"
-              >Explore now &rarr;</a>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </section> --> -->
+  </section>
 
-
-  <!-- {%- if site.posts.size > 0 -%}
-  <ul class="post-list">
-      {% for post in site.posts  %}
-      {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
-      {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
-  
-      {% if forloop.first %}
-      <h2 id="{{ this_year }}-ref" class="post-year">{{this_year}}</h2>
-      <ul>
-      {% endif %}
-  
-      <li>
-          {%- assign date_format = site.moving.date_format | default: "%b %-d, %Y" -%}
-          <span class="post-meta">
-            {{ post.date | date: date_format }}
-          </span>
-          <a class="black-link post-link-layout" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-      </li>
-  
-      {% if forloop.last %}
-      </ul>
-      {% else %}
-          {% if this_year != next_year %}
-          </ul>
-          <h2 id="{{ next_year }}-ref" class="post-year">{{next_year}}</h2>
-          <ul>
-          {% endif %}
-      {% endif %}
-  {% endfor %}
-  </ul>
-  {%- endif -%}
-</div> -->
-
+</section>
