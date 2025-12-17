@@ -9,7 +9,7 @@ In the time that I am not reading, watching, travelling or eating; I try to writ
 
 ---
 
-#### **Research Interests**
+## **Research Interests**
 
 <ul class="research-interests">
   <li>Computational mechanics</li>
@@ -26,7 +26,7 @@ In the time that I am not reading, watching, travelling or eating; I try to writ
 </ul>
 
 
-#### **Education**
+## **Education**
 
 <div class="timeline">
 
@@ -66,7 +66,7 @@ In the time that I am not reading, watching, travelling or eating; I try to writ
 
 </div>
 
-#### **Research Experience**
+## **Research Experience**
 
 <div class="experience-list">
 
@@ -123,7 +123,7 @@ In the time that I am not reading, watching, travelling or eating; I try to writ
 
 </div>
 
-#### **Professional Experience**
+## **Professional Experience**
 
 <div class="experience-list">
 
@@ -148,7 +148,7 @@ In the time that I am not reading, watching, travelling or eating; I try to writ
 
 </div>
 
-#### **Awards and Fellowships**
+## **Awards and Fellowships**
 
 <div class="compact-list">
 
@@ -203,7 +203,7 @@ In the time that I am not reading, watching, travelling or eating; I try to writ
 
 </div>
 
-#### **Professional Memberships**
+## **Professional Memberships**
 
 <div class="compact-list">
 

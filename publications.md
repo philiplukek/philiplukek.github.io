@@ -4,7 +4,7 @@ title: Publications
 permalink: /publications/
 ---
 
-### **Peer-Reviewed Journal Publications**
+## **Peer-Reviewed Journal Publications**
 
 <div class="pub-list">
 
@@ -162,7 +162,7 @@ permalink: /publications/
 
 
 
-### **Talks & Presentations**
+## **Talks & Presentations**
 
 <div class="conf-list">
 
