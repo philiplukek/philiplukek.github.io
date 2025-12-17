@@ -471,6 +471,122 @@
   color: #555;
 }
 
+/* =========================
+   Research & Projects
+   ========================= */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+/* Flip card */
+.project-card {
+  perspective: 1000px;
+  max-width: 350px;
+  /* margin: 0 auto; */
+}
+
+.project-card-inner {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+/* .project-card:hover .project-card-inner
+.project-card.is-flipped .project-card-inner {
+  transform: rotateY(180deg);
+} */
+
+.project-card:hover .project-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Front & back */
+.project-card-front,
+.project-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.project-card-front {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff; /* Forces card to pure white */
+  height: 100%;
+  overflow: hidden;
+}
+
+.project-card-front img {
+  flex: 1;
+  width: 100%;
+  object-fit: contain;
+  min-height: 0;
+  background-color: #ffffff;
+  /* padding: 10px; */
+  box-sizing: border-box;
+  /* height: auto; */
+  /* object-fit: cover; */
+}
+
+.project-card-front h3 {
+  flex-shrink: 0;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.project-card-back {
+  background: #fafafa;
+  transform: rotateY(180deg);
+  padding: 1.2rem 1.5rem;;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.project-heading {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;    /* Space between heading and description */
+  color: #333;              /* Or your preferred color */
+}
+
+.project-card-back p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.project-link {
+  align-self: flex-start;
+  font-size: 0.85rem;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  padding: 0.35rem 0.8rem;
+  border-radius: 4px;
+  color: #333;
+}
+
+
 
 /* .site-header {
   display: flex;

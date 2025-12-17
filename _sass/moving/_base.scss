@@ -225,6 +225,25 @@ pre {
   }
 }
 
+// .wrapper {
+//   /* SAFE: Content will shrink on mobile but won't exceed 1100px on desktop */
+//   max-width: 1100px; 
+  
+//   margin-right: auto;
+//   margin-left: auto;
+
+//   /* SAFE: Use small padding for mobile so text doesn't touch the screen edge */
+//   padding-right: 15px; 
+//   padding-left: 15px;
+
+//   /* This media query handles larger screens specifically */
+//   @media screen and (min-width: 800px) {
+//     max-width: 1200px; 
+//     padding-right: 30px;
+//     padding-left: 30px;
+//   }
+// }
+
 /**
   * Clearfix
   */
