@@ -586,6 +586,47 @@
   color: #333;
 }
 
+/* =========================
+   Personal pages
+   ========================= */
+
+.personal-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.personal-header {
+  margin-bottom: 2rem;
+}
+
+.personal-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.personal-subtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
+.personal-content p {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1.4rem;
+}
+
+.personal-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.personal-gallery img {
+  width: 100%;
+  border-radius: 6px;
+}
+
 
 
 /* .site-header {

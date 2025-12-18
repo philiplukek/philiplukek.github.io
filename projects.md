@@ -14,9 +14,29 @@ My doctoral research lies at the intersection of finite element analysis (FEA), 
 
 ## Ongoing Projects
 
-<p class="muted">
+<!-- <p class="muted">
 Currently updating. Selected ongoing research directions will be listed here.
-</p>
+</p> -->
+<div class="project-grid">
+
+  <div class="project-card">
+    <div class="project-card-inner">
+
+      <div class="project-card-front">
+        <img src="/assets/images/pinn.png" alt="PINN">
+        <h3>Scientific machine learning</h3>
+      </div>
+
+      <div class="project-card-back">
+      <h4 class="project-heading">SciML & PINNs</h4> <p>
+       Integrating PDE's into neural networks
+        </p>
+        <a href="/projects/pinn/" class="project-link">Explore →</a>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 ---
 
@@ -40,7 +60,7 @@ Currently updating. Selected ongoing research directions will be listed here.
         cycle using isogeometric analysis coupled with adaptive mesh
         refinement.
       </p>
-      <a href="/projects/iga-amr/" class="project-link">Explore →</a>
+      <a href="/projects/dao-cycle/" class="project-link">Explore →</a>
     </div>
 
     </div>
@@ -86,7 +106,7 @@ Currently updating. Selected ongoing research directions will be listed here.
         Density-based topology optimization frameworks
           formulated directly on spline-based discretizations.
         </p>
-        <a href="/projects/gui-iga/" class="project-link">Explore →</a>
+        <a href="/projects/iga-to/" class="project-link">Explore →</a>
       </div>
 
     </div>
@@ -105,7 +125,7 @@ Currently updating. Selected ongoing research directions will be listed here.
         Continuity-aware topology optimization of plate and shell
           structures using multi-patch isogeometric formulations.
         </p>
-        <a href="/projects/gui-iga/" class="project-link">Explore →</a>
+        <a href="/projects/shell-ito/" class="project-link">Explore →</a>
       </div>
 
     </div>
@@ -131,7 +151,7 @@ Currently updating. Selected ongoing research directions will be listed here.
       <h4 class="project-heading">Adaptivity</h4> <p>
         Reduction in CPU requirements and analysis time through adaptive mesh refinement algorithms.
         </p>
-        <a href="/projects/gui-iga/" class="project-link">Explore →</a>
+        <a href="/projects/iga-amr/" class="project-link">Explore →</a>
       </div>
     </div>
   </div>
@@ -156,7 +176,7 @@ Currently updating. Selected ongoing research directions will be listed here.
         Numerical investigation of topology optimization strategies
           for designing auxetic metamaterials with negative Poisson’s ratio.
         </p>
-        <a href="/projects/gui-iga/" class="project-link">Explore →</a>
+        <a href="/projects/auxetic-ito/" class="project-link">Explore →</a>
       </div>
 
     </div>
@@ -175,7 +195,7 @@ Currently updating. Selected ongoing research directions will be listed here.
         Diffuse-interface topology optimization formulations using
           adaptive phase-field methods for robust structural design.
         </p>
-        <a href="/projects/gui-iga/" class="project-link">Explore →</a>
+        <a href="/projects/rde-ito/" class="project-link">Explore →</a>
       </div>
 
     </div>

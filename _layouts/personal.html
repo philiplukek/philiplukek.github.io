@@ -1,87 +1,18 @@
 ---
 layout: default
 ---
+
 <section class="personal-page">
 
-  <div class="personal-grid">
+  <header class="personal-header">
+    <h1 class="personal-title">{{ page.title }}</h1>
+    {% if page.subtitle %}
+      <p class="personal-subtitle">{{ page.subtitle }}</p>
+    {% endif %}
+  </header>
 
-    <!-- Travel -->
-    <div class="flip-card" data-link="/personal/travel/">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <img src="/assets/icons/travel.svg" alt="Travel">
-          <h3>Travel</h3>
-        </div>
-        <div class="flip-card-back">
-          <p>
-            I travel to slow down, observe, and recalibrate perspective.
-          </p>
-          <span class="flip-action">Explore →</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Food -->
-    <div class="flip-card" data-link="/personal/food/">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <img src="/assets/icons/food.svg" alt="Food">
-          <h3>Food</h3>
-        </div>
-        <div class="flip-card-back">
-          <p>
-            Food is culture, memory, and curiosity on a plate.
-          </p>
-          <span class="flip-action">Explore →</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Books -->
-    <div class="flip-card" data-link="/personal/books/">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <img src="/assets/icons/books.svg" alt="Books">
-          <h3>Books</h3>
-        </div>
-        <div class="flip-card-back">
-          <p>
-            Reading helps me think slowly and precisely.
-          </p>
-          <span class="flip-action">Explore →</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Films -->
-    <div class="flip-card" data-link="/personal/films/">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <img src="/assets/icons/film.svg" alt="Films">
-          <h3>Films</h3>
-        </div>
-        <div class="flip-card-back">
-          <p>
-            Cinema is narrative, rhythm, and visual reasoning.
-          </p>
-          <span class="flip-action">Explore →</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
+  <section class="personal-content">
+    {{ content }}
+  </section>
 
 </section>
-
-<script>
-  document.querySelectorAll('.flip-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const link = card.dataset.link;
-      if (card.classList.contains('is-flipped')) {
-        window.location.href = link;
-      } else {
-        card.classList.add('is-flipped');
-      }
-    });
-  });
-</script>

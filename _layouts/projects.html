@@ -1,0 +1,36 @@
+---
+layout: default
+---
+
+<article class="project-page">
+
+  <header class="project-header">
+    <h1 class="project-title">{{ page.title }}</h1>
+
+    {% if page.subtitle %}
+      <p class="project-subtitle">
+        {{ page.subtitle }}
+      </p>
+    {% endif %}
+  </header>
+
+  <section class="project-content">
+    {{ content }}
+  </section>
+
+  {% if page.links %}
+  <aside class="project-links">
+    <h3>Resources</h3>
+    <ul>
+      {% for link in page.links %}
+        <li>
+          <a href="{{ link.url }}" target="_blank">
+            {{ link.label }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </aside>
+  {% endif %}
+
+</article>
