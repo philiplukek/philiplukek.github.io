@@ -10,20 +10,4 @@ permalink: /projects/pinn/
 #     url: https://doi.org/10.1016/j.cma.2023.116075
 ---
 
-## Overview
-...
-
-## Motivation
-...
-
-## Methodology
-...
-
-## Key Contributions
-...
-
-## Representative Results
-...
-
-## Related Publications / Material
-...
+## Ongoing project. Page under construction

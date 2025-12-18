@@ -76,7 +76,7 @@ In the time that I am not reading, watching, travelling or eating; I try to writ
     </div>
     <div class="experience-details">
       <div class="experience-role">
-        Project Assistant
+        Project Developer
       </div>
       <div class="experience-org">
         IIT Roorkee / Indian Space Research Organization (ISRO)
