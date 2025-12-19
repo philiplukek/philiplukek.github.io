@@ -87,6 +87,7 @@ Results are rendered in a dedicated visualizer that supports:
 * **Early Implementation:** One of the few GUI-based IGA frameworks developed specifically for the Indian aerospace sector.
 * **CAD-Analysis Unification:** Eliminates the "meshing" phase by performing analysis directly on the geometry.
 * **Research & Teaching:** A modular architecture that allows for the easy addition of new subroutines (e.g., non-linear analysis or thermal modules).
+* **IGA subroutines in Python:** A python-based backend code, that works independently of the GUI, running on isogeometric formulatios. The physical-parametric-parent spaces of IGA is accurately captured with respect to spline basis functions. 
 
 ---
 

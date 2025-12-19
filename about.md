@@ -12,17 +12,21 @@ In the time that I am not reading, watching, travelling or eating; I try to writ
 ## **Research Interests**
 
 <ul class="research-interests">
+  <li>Computer aided engineering</li>
   <li>Computational mechanics</li>
   <li>Scientific computing</li>
-  <li>Computer aided engineering</li>
-  <li>Finite element analysis</li>
-  <li>Isogeometric analysis</li>
-  <li>Topology optimization</li>
   <li>Architected metamaterials</li>
-  <li>Adaptive mesh refinement</li>
+  <li>Finite element analysis</li>
+  <li>Topology optimization</li>
   <li>Plate and shell structures</li> 
+  <li>Adaptive mesh refinement</li>
+  <li>Isogeometric analysis</li>
   <li>Scientific Machine Learning/PINN</li>
   <li>Numerical methods for structural analysis</li>
+  
+  
+
+
 </ul>
 
 

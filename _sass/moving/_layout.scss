@@ -102,14 +102,14 @@
 /**
  * Site footer
  */
-.site-footer {
-  padding: $spacing-unit / 1.5 0;
-}
+// .site-footer {
+//   padding: $spacing-unit / 1.5 0;
+// }
 
-.footer-heading {
-  @include relative-font-size(1.125);
-  margin-bottom: $spacing-unit / 2;
-}
+// .footer-heading {
+//   @include relative-font-size(1.125);
+//   margin-bottom: $spacing-unit / 2;
+// }
 
 .p-name {
   @media (max-width: 500px) {
@@ -127,6 +127,71 @@
 .social-media-list {
   list-style: none;
   margin-left: 0;
+}
+
+/**
+ * Site footer
+ */
+.site-footer {
+  padding: $spacing-unit 0;
+  border-top: 1px solid #e8e8e8;
+  background-color: #ffffff; /* Change color here */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between; /* This forces the left and right items apart */
+  align-items: flex-start;        /* Aligns the tops of both sides */
+  width: 100%;                   
+  max-width: 800px;              /* Adjust this to match your site's content width */
+  margin: 0 auto;                 /* Centers the whole footer block */
+  padding: 0 20px;                /* Adds a little breathing room on the edges */
+}
+
+.footer-left {
+  flex: 1;                        /* Allows the left side to take up space */
+  .p-name {
+    margin: 1;                    /* Removes default margins that cause misalignment */
+    font-weight: bold;
+    font-size: 1.1rem;
+    line-height: 1.2;             /* Matches the right side */
+  }
+}
+
+.footer-right {
+  flex: 1;
+  text-align: right;              /* Aligns the text and icons to the right edge */
+
+  .footer-heading {
+    margin: 0 0 10px 0;           /* Removes top margin to align with the name */
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.2;             /* Matches the left side */
+  }
+
+  .contact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin-bottom: 8px;
+      
+      a {
+        text-decoration: none;
+        color: #828282;
+        display: flex;
+        justify-content: flex-end; /* Keeps icons next to text on the right edge */
+        align-items: center;
+        gap: 10px;
+
+        &:hover {
+          color: #000;
+        }
+      }
+    }
+  }
 }
 
 /**

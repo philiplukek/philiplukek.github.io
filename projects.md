@@ -49,17 +49,16 @@ Currently updating. Selected ongoing research directions will be listed here.
     <div class="project-card-inner">
 
       <div class="project-card-front">
-        <img src="/assets/images/gui.png" alt="IGA GUI">
+        <img src="/assets/images/nurbs.jpg" alt="IGA">
         <h3>Isogeometric analysis</h3>
       </div>
 
       <div class="project-card-back">
-      <h4 class="project-heading">GUI-based Framework for IGA</h4> <p>
-        A standalone graphical interface enabling geometry creation,
-          analysis, and post-processing using isogeometric methods.
-        </p>
-        <a href="/projects/gui-iga/" class="project-link">Explore →</a>
-      </div>
+      <h4 class="project-heading">Isogeometric methods</h4> <p>
+        Development of IGA subroutines for structural mechanics.
+      </p>
+      <a href="/projects/iga/" class="project-link">Explore →</a>
+    </div>
 
     </div>
   </div>
@@ -127,6 +126,25 @@ Currently updating. Selected ongoing research directions will be listed here.
     </div>
   </div>
 
+  <div class="project-card">
+    <div class="project-card-inner">
+
+      <div class="project-card-front">
+        <img src="/assets/images/gui.png" alt="IGA GUI">
+        <h3>FALCON - GUI for IGA</h3>
+      </div>
+
+      <div class="project-card-back">
+      <h4 class="project-heading">GUI-based Framework for IGA</h4> <p>
+        A standalone graphical interface enabling geometry creation,
+          analysis, and post-processing using isogeometric methods.
+        </p>
+        <a href="/projects/gui-iga/" class="project-link">Explore →</a>
+      </div>
+
+    </div>
+  </div>
+
 </div>
 
 ---
@@ -178,11 +196,11 @@ Currently updating. Selected ongoing research directions will be listed here.
 
       <div class="project-card-front">
         <img src="/assets/images/phase.png" alt="Phase Field TO">
-        <h3>Phase-Field Topology Optimization</h3>
+        <h3>Phase-Field Topology Optimization (Ongoing)</h3>
       </div>
 
       <div class="project-card-back">
-      <h4 class="project-heading">Phase-Field Topology Optimization</h4> <p>
+      <h4 class="project-heading">Phase-Field Topology Optimization (WIP) </h4> <p>
         Diffuse-interface topology optimization formulations using
           adaptive phase-field methods for robust structural design.
         </p>
