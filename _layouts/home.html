@@ -10,25 +10,6 @@ layout: default
 
       {{ content }}
 
-      <!-- <p class="intro-name">
-        PHILIP LUKE K
-      </p>
-
-      <p class="intro-lead">
-        I am a researcher in <strong>computational mechanics</strong> with primary
-        interests in <strong>finite element analysis</strong> and
-        <strong>structural optimization</strong>.
-      </p>
-
-      <p class="intro-body">
-        I have a background in civil and structural engineering with a doctorate
-        in structural mechanics. My work focuses on the development of efficient
-        numerical methods for analysis and optimization of complex engineering
-        systems. I am passionate about scientific computing and enjoy developing
-        research-oriented codes aimed at advancing analysis and design
-        methodologies for next-generation engineers.
-      </p> -->
-
     </div>
 
     <div class="intro-photo">
@@ -40,4 +21,35 @@ layout: default
 
   </section>
 
+  <section class="updates-section">
+  <h2 class="updates-title updates-title">What's New</h2>
+
+  <div class="updates-container">
+    {% assign sorted_updates = site.updates | sort: 'date' | reverse %}
+    {% for update in sorted_updates limit: 6 %}
+    <div class="update-row">
+      <div class="update-date">
+        {% if update.format == "month_year" %}
+          {{ update.date | date: "%B %Y" }}
+        {% else %}
+          {{ update.date | date: "%b %d, %Y" }}
+        {% endif %}
+      </div>
+      <div class="update-description">
+        {{ update.description }} 
+        <a href="{{ '/updates/' | relative_url }}" class="read-more">Read more</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- <a href="{{ '/updates/' | relative_url }}" class="more-updates-box">
+    Click for more updates
+  </a> -->
+  <a href="{{ '/updates/' | relative_url }}" class="updates-link-text">
+  View all updates <span>&rarr;</span>
+</a>
 </section>
+
+</section>
+

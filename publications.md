@@ -8,6 +8,40 @@ permalink: /publications/
 
 <div class="pub-list">
 
+<div class="pub-item">
+    <div class="pub-cover">
+      <img src="/assets/images/cmame.png" alt="Computer Methods in Applied Mechanics and Engineering">
+    </div>
+
+    <div class="pub-details">
+      <div class="pub-title">
+        An adaptive isogeometric framework for topology optimization based on a reaction–diffusion equation
+      </div>
+
+      <div class="pub-authors">
+        <strong>Philip Luke K</strong>, Abhinav Gupta, Rajib Chowdhury
+      </div>
+
+      <div class="pub-meta">
+        <span class="pub-journal">Computer Methods in Applied Mechanics and Engineering</span>,
+        Elsevier, 2025
+      </div>
+
+    <div class="pub-actions">
+      <a
+        class="pub-readmore"
+        href=""
+        target="_blank"
+      >
+        under review
+      </a>
+    </div>
+
+    <ul class="pub-highlights">
+    </ul>
+  </div>
+  </div>
+
   <div class="pub-item">
     <div class="pub-cover">
       <img src="/assets/images/ewc.png" alt="Engineering with Computers">

@@ -135,7 +135,7 @@
 .site-footer {
   padding: $spacing-unit 0;
   border-top: 1px solid #e8e8e8;
-  background-color: #ffffff; /* Change color here */
+  // background-color: #ffffff; /* Change color here */
 }
 
 .footer-container {
@@ -146,6 +146,11 @@
   max-width: 800px;              /* Adjust this to match your site's content width */
   margin: 0 auto;                 /* Centers the whole footer block */
   padding: 0 20px;                /* Adds a little breathing room on the edges */
+
+  @media (max-width: 600px) {
+    flex-direction: column;      // Stacks vertically on mobile
+    gap: 20px;
+  }
 }
 
 .footer-left {
