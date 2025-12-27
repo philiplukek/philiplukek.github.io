@@ -414,7 +414,7 @@
 
 .flip-card-inner {
   position: relative;
-  width: 100%;
+  width: 80%;
   height: 220px;
   transform-style: preserve-3d;
   transition: transform 0.6s ease;
@@ -617,17 +617,108 @@
 
 .personal-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-  margin: 1.5rem 0;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  column-gap: 1rem;
+  row-gap: 0.1rem;
+  margin: 0 0;
 }
 
-.personal-gallery img {
+/* .personal-gallery img {
   width: 100%;
   border-radius: 6px;
+} */
+.personal-gallery img {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Forces square shape */
+  object-fit: cover;   /* Smart crops portrait/landscape to fit square */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  border: 1px solid var(--border-color);
+
+  &:hover {
+    transform: scale(1.02);
+    filter: brightness(0.9);
+  }
+}
+
+/* 2. The Preview Modal */
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark backdrop */
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 0px;
+  border: none !important;
+  padding: 0 !important;       
+  background: none !important;
+  box-shadow: none;
+  /* box-shadow: 0 0 20px rgba(0,0,0,0.5); */
+  transition: opacity 0.2s ease-in-out;
+}
+
+.close-modal {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-arrow {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px; /* Centers vertically */
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+  transition: 0.3s ease;
+  border-radius: 3px;
+  user-select: none; /* Prevents highlighting the arrow text */
+  z-index: 10000;
+  
+
+  &:hover {
+    background-color: rgba(255,255,255,0.1);
+  }
+}
+
+/* Position the "Next" button to the right */
+.next-slide {
+  right: 15%;
+}
+
+/* Position the "Previous" button to the left */
+.prev-slide {
+  left: 15%;
+}
+
+/* Adjust Close button position slightly if needed */
+.close-modal {
+  top: 20px;
+  right: 30px;
 }
 
 
+/* =========================
+   Updates
+   ========================= */
 @keyframes shimmer-flow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -642,7 +733,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   
-  /* Professional Blue Gradient: Black -> Deep Blue -> Slate Grey -> Black */
+/* Professional Blue Gradient: Black -> Deep Blue -> Slate Grey -> Black */
   background: linear-gradient(90deg, #000000, #0056b3, #6c757d);
   background-size: 200% auto;
   -webkit-background-clip: text;

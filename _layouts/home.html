@@ -37,7 +37,9 @@ layout: default
       </div>
       <div class="update-description">
         {{ update.description }} 
-        <a href="{{ '/updates/' | relative_url }}" class="read-more">Read more</a>
+        <a href="{{ '/updates/' | relative_url }}#{{ update.url | slugify }}" class="read-more">
+          Read more
+        </a>
       </div>
     </div>
     {% endfor %}

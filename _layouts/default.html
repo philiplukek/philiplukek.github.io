@@ -13,5 +13,135 @@
 
     {%- include footer.html -%}
 
+    <div id="imageModal" class="modal">
+      <span class="close-modal">&times;</span>
+
+      <a class="modal-arrow prev-slide" id="prevArrow">&#10094;</a>
+      <a class="modal-arrow next-slide" id="nextArrow">&#10095;</a>
+
+      <img class="modal-content" id="fullImage">
+    </div>
+
+    <script>
+      /* --- DARK MODE LOGIC --- */
+      const currentTheme = localStorage.getItem('theme');
+      const themeIcon = document.getElementById('theme-icon'); // Ensure this ID exists in header.html
+
+      if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark' && themeIcon) {
+          themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+      }
+
+      // If you have a toggle button, this listener handles the click
+      const toggleButton = document.getElementById('theme-toggle');
+      if (toggleButton) {
+        toggleButton.addEventListener('click', () => {
+          let theme = document.documentElement.getAttribute('data-theme');
+          if (theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
+          } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+          }
+        });
+      }
+
+      /* --- IMAGE GALLERY PREVIEW LOGIC --- */
+      document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("fullImage");
+        const closeBtn = document.querySelector(".close-modal");
+        const prevArrow = document.getElementById("prevArrow");
+        const nextArrow = document.getElementById("nextArrow");
+
+        // Variables to track navigation
+        let currentGalleryImages = []; // Stores images belonging to the currently active gallery block
+        let currentIndex = 0;          // Tracks which image is showing
+
+        // Function to show image at specific index with a fade effect
+        function showImage(index) {
+            modalImg.style.opacity = 0; // Fade out briefly
+            setTimeout(() => {
+                modalImg.src = currentGalleryImages[index].src;
+                modalImg.style.opacity = 1; // Fade back in
+            }, 50);
+            currentIndex = index;
+        }
+
+        // 1. SETUP CLICK LISTENERS FOR ALL GALLERY IMAGES
+        // We look for all images inside .personal-gallery divs
+        const allGalleryImages = document.querySelectorAll(".personal-gallery img");
+
+        allGalleryImages.forEach(img => {
+            img.onclick = function() {
+            // Important: Find the specific gallery container this image belongs to.
+            // This ensures we only cycle through images in THIS specific update post.
+            const parentGallery = this.closest('.personal-gallery');
+            
+            // Get all images in this specific group as an Array
+            currentGalleryImages = Array.from(parentGallery.querySelectorAll('img'));
+            
+            // Find the index of the clicked image within its group
+            currentIndex = currentGalleryImages.indexOf(this);
+
+            modal.style.display = "flex";
+            // Reset opacity immediately for first open
+            modalImg.style.opacity = 1; 
+            modalImg.src = this.src;
+            
+            // Hide arrows if there is only 1 image in the group
+            if (currentGalleryImages.length <= 1) {
+                prevArrow.style.display = "none";
+                nextArrow.style.display = "none";
+            } else {
+                prevArrow.style.display = "block";
+                nextArrow.style.display = "block";
+            }
+            }
+        });
+
+        // 2. ARROW CLICK HANDLERS
+        // Show Previous Image (loops around)
+        prevArrow.onclick = function() {
+            let newIndex = (currentIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
+            showImage(newIndex);
+        }
+
+        // Show Next Image (loops around)
+        nextArrow.onclick = function() {
+            let newIndex = (currentIndex + 1) % currentGalleryImages.length;
+            showImage(newIndex);
+        }
+
+
+        // 3. CLOSING MODAL HANDLERS
+        if (closeBtn) {
+            closeBtn.onclick = function() { modal.style.display = "none"; }
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) { modal.style.display = "none"; }
+        }
+        
+        // Optional: Close on Escape key press
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && modal.style.display === "flex") {
+                modal.style.display = "none";
+            }
+            // Optional: Navigate with arrow keys
+            if (modal.style.display === "flex" && currentGalleryImages.length > 1) {
+                if (event.key === "ArrowLeft") { prevArrow.click(); }
+                if (event.key === "ArrowRight") { nextArrow.click(); }
+            }
+        });
+        });
+
+    </script>
+
   </body>
 </html>

@@ -10,7 +10,7 @@ permalink: /updates/
   <div class="updates-feed">
     {% assign sorted_updates = site.updates | sort: 'date' | reverse %}
     {% for update in sorted_updates %}
-      <article class="update-item">
+      <article id="{{ update.url | slugify }}" class="update-item">
         
         <header class="update-header">
           <div class="update-page-date">
