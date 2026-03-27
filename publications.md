@@ -24,20 +24,23 @@ permalink: /publications/
 
       <div class="pub-meta">
         <span class="pub-journal">Computer Methods in Applied Mechanics and Engineering</span>,
-        Elsevier, 2025
+        Elsevier, 2026
       </div>
 
     <div class="pub-actions">
       <a
         class="pub-readmore"
-        href=""
+        href="https://doi.org/10.1016/j.cma.2026.118924"
         target="_blank"
       >
-        under review
+        Read more
       </a>
     </div>
 
     <ul class="pub-highlights">
+      <li>Collaborated again with Vanderbilt University</li>
+      <li>Extension of the methodology to a new optimization framework</li>
+      <li> > 90% reduction in DoF and > 500x speedup achieved </li>
     </ul>
   </div>
   </div>
