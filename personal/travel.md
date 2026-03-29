@@ -60,61 +60,82 @@ permalink: /personal/travel/
     padding-left: 12px;
   }
 
-  .trip-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 20px;
-    margin-bottom: 50px;
-  }
+.trip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 32px;
+  padding: 20px 0 50px 0;
+}
 
-  .trip-card {
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid #e5e5e5;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .trip-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.1);
-  }
+.trip-card {
+  background: white;
+  padding: 12px 12px 44px 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transform: rotate(-2deg);
+}
+.trip-card:nth-child(even) { transform: rotate(2deg); }
+.trip-card:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  z-index: 10;
+}
 
-  .trip-cover {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    display: block;
-  }
+.trip-cover {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  display: block;
+  filter: sepia(15%);
+}
 
-  .trip-cover-placeholder {
-    width: 100%;
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.trip-cover-placeholder {
+  width: 100%;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .trip-info { padding: 14px 16px; background: #fff; }
-  .trip-name { font-size: 1rem; font-weight: 600; color: #111; margin: 0 0 4px 0; }
-  .trip-meta { font-size: 0.82rem; color: #888; margin: 0 0 8px 0; }
-  .trip-note { font-size: 0.88rem; color: #555; line-height: 1.5; margin: 0 0 12px 0; }
-  .trip-link { font-size: 0.8rem; font-weight: 600; color: #D85A30; text-decoration: none; letter-spacing: 0.03em; }
+.trip-caption {
+  font-family: 'Georgia', serif;
+  color: #333;
+  text-align: center;
+  margin-top: 12px;
+  font-size: 1.05rem;
+}
 
-  .country-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
-  .country-tag {
-    font-size: 0.72rem;
-    background: #f5f0ee;
-    color: #a05030;
-    border-radius: 20px;
-    padding: 2px 8px;
-    font-weight: 500;
-  }
+.trip-meta-small {
+  font-family: 'Georgia', serif;
+  font-size: 0.8rem;
+  color: #888;
+  text-align: center;
+  margin-top: 3px;
+}
+
+.country-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  margin-top: 6px;
+}
+.country-tag {
+  font-size: 0.68rem;
+  background: #f5f0ee;
+  color: #a05030;
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-weight: 500;
+  font-family: sans-serif;
+}
 </style>
 
 
-<div class="travel-stats">
+<!-- <div class="travel-stats">
   <div class="stat-item">
     <span class="stat-number" id="stat-trips">0</span>
     <span class="stat-label">Trips</span>
@@ -127,7 +148,7 @@ permalink: /personal/travel/
     <span class="stat-number" id="stat-cities">0</span>
     <span class="stat-label">Cities</span>
   </div>
-</div>
+</div> -->
 
 <div id="travel-map"></div>
 
@@ -168,7 +189,7 @@ const trips = [
     lat:      27.912483234837797, 
     lng:      79.75677733285738,
     note:     "Food, Spirituality and Chaos",
-    cover:    "",
+    cover:    "/assets/personal/up2.jpeg",
     color:    "linear-gradient(135deg, #4a7c59, #8fbc8f)",
     page:     "/personal/travel/up/"
   },
@@ -181,7 +202,7 @@ const trips = [
     lat:      30.51952497795437, 
     lng:      79.31895387867016,
     note:     "A trek so GOAT-ed",
-    cover:    "",
+    cover:    "/assets/personal/rudranath.jpeg",
     color:    "linear-gradient(135deg, #4a7c59, #8fbc8f)",
     page:     "/personal/travel/rudranath/"
   },
@@ -194,46 +215,46 @@ const trips = [
     lat:      30.836180671560612, 
     lng:      78.55929999145081,
     note:     "Clean air, lush meadows and gorgeous views",
-    cover:    "",
+    cover:    "/assets/personal/dayara.jpeg",
     color:    "linear-gradient(135deg, #4a7c59, #8fbc8f)",
     page:     "/personal/travel/dayara/"
   },
-    {
-    id:       "dayara",
-    name:     "Dayara Bugyal trek",
-    location: "Uttarakhand",
-    country:  "India",
-    date:     "September 2025",
-    lat:      30.836180671560612, 
-    lng:      78.55929999145081,
-    note:     "Clean air, lush meadows and gorgeous views",
-    cover:    "",
-    color:    "linear-gradient(135deg, #4a7c59, #8fbc8f)",
-    page:     "/personal/travel/dayara/"
-  },
+  //   {
+  //   id:       "dayara",
+  //   name:     "Dayara Bugyal trek",
+  //   location: "Uttarakhand",
+  //   country:  "India",
+  //   date:     "September 2025",
+  //   lat:      30.836180671560612, 
+  //   lng:      78.55929999145081,
+  //   note:     "Clean air, lush meadows and gorgeous views",
+  //   cover:    "",
+  //   color:    "linear-gradient(135deg, #4a7c59, #8fbc8f)",
+  //   page:     "/personal/travel/dayara/"
+  // },
   {
     id:       "chicago",
-    name:     "Across the seven seas",
+    name:     "U.S",
     location: "Chicago, New York",
     country:  "USA",
     date:     "July 2025",
     lat:      41.88422205844864, 
     lng:      -87.64194022400514,
     note:     "Skyscrapers and rectangles everywhere",
-    cover:    "",
+    cover:    "/assets/personal/ny.jpg",
     color:    "linear-gradient(135deg, #4a7c59, #8fbc8f)",
     page:     "/personal/travel/usa/"
   },
   {
     id:       "japan",
     name:     "Japaaan",
-    location: "Tokyo, Kyoto",
+    location: "Japan",
     country:  "Japan",
     date:     "May 2025",
     lat:      36.40537304253569, 
     lng:      138.19260069963303,
     note:     "I just wanna go back 10 more times",
-    cover:    "",
+    cover:    "/assets/personal/tokyo.jpg",
     color:    "linear-gradient(135deg, #4a7c59, #8fbc8f)",
     page:     "/personal/travel/japan/"
   },
@@ -246,7 +267,7 @@ const trips = [
     lat:      30.446294698709742, 
     lng:      79.56987120037952,
     note:     "A wholesome snow trek",
-    cover:    "",
+    cover:    "/assets/personal/kuari.jpeg",
     color:    "linear-gradient(135deg, #4a7c59, #8fbc8f)",
     page:     "/personal/travel/kuari/"
   },
@@ -257,20 +278,18 @@ const trips = [
     country:  ["Ireland", "UK", "France", "Italy"],
     date:     "June 2023",
       pins: [
-    { lat: 51.89841194211231, lng: -8.477625082795807,  city: "Cork"  },
-    { lat: 51.51912730194177, lng: -0.1249545258316021, city: "London"   },
-    { lat: 48.8567926049533, lng: 2.357331139736329, city: "Paris" },
-    { lat: 41.896154842614884, lng: 12.46869488527149, city: "Rome" }
+    { lat: 51.89841194211231, lng: -8.477625082795807,  city: "Ireland"  },
+    { lat: 51.51912730194177, lng: -0.1249545258316021, city: "U.K"   },
+    { lat: 48.8567926049533, lng: 2.357331139736329, city: "France" },
+    { lat: 41.896154842614884, lng: 12.46869488527149, city: "Italy" }
   ],   
     // lat:      30.446294698709742, 
     // lng:      79.56987120037952,
     note:     "My Da-Vinci code trail",
-    cover:    "",
+    cover:    "/assets/personal/london.jpg",
     color:    "linear-gradient(135deg, #4a7c59, #8fbc8f)",
     page:     "/personal/travel/europe/"
   },
-
-  // ── add more trips here ──
 ];
 
 
@@ -293,9 +312,9 @@ function getPins(trip) {
 // Stats — deduplicate countries and count total cities across all trips
 const allCountries = [...new Set(trips.flatMap(getCountries))];
 const totalCities  = trips.reduce((sum, t) => sum + getPins(t).length, 0);
-document.getElementById("stat-trips").textContent     = trips.length;
-document.getElementById("stat-countries").textContent = allCountries.length;
-document.getElementById("stat-cities").textContent    = totalCities;
+// document.getElementById("stat-trips").textContent     = trips.length;
+// document.getElementById("stat-countries").textContent = allCountries.length;
+// document.getElementById("stat-cities").textContent    = totalCities;
 
 // Map
 const map = L.map("travel-map", { center: [20, 10], zoom: 2, minZoom: 2 });
@@ -337,19 +356,15 @@ grid.innerHTML = trips.map(trip => {
     ? `<div class="country-tags">${countries.map(c => `<span class="country-tag">${c}</span>`).join("")}</div>`
     : "";
 
-  return `
-    <a class="trip-card" href="${trip.page}">
-      ${trip.cover
-        ? `<img class="trip-cover" src="${trip.cover}" alt="${trip.name}">`
-        : `<div class="trip-cover-placeholder" style="background:${trip.color};"></div>`
-      }
-      <div class="trip-info">
-        <p class="trip-name">${trip.name}</p>
-        <p class="trip-meta">${trip.location} &nbsp;·&nbsp; ${trip.date}</p>
-        ${countryTags}
-        <p class="trip-note">${trip.note}</p>
-        <span class="trip-link">Read more →</span>
-      </div>
-    </a>`;
+return `
+  <a class="trip-card" href="${trip.page}">
+    ${trip.cover
+      ? `<img class="trip-cover" src="${trip.cover}" alt="${trip.name}">`
+      : `<div class="trip-cover-placeholder" style="background:${trip.color};"></div>`
+    }
+    <div class="trip-caption">${trip.name}</div>
+    <div class="trip-meta-small">${trip.location} · ${trip.date}</div>
+    ${countryTags}
+  </a>`;
 }).join("");
 </script>
