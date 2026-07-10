@@ -10,10 +10,10 @@ My thesis photoshoot ladies and gentleman !!!
 
 <div class="personal-gallery">
   <img src="/assets/updates/thesis0.jpeg" alt="">
-  <img src="/assets/updates/thesis1.jpeg" alt="">
+  <img src="/assets/updates/thesis1.jpg" alt="">
   <img src="/assets/updates/thesis4.jpeg" alt="">
-  <img src="/assets/updates/thesis2.jpeg" alt="">
-  <img src="/assets/updates/thesis3.jpeg" alt="">
+  <img src="/assets/updates/thesis2.jpg" alt="">
+  <img src="/assets/updates/thesis3.jpg" alt="">
   <img src="/assets/updates/thesis5.jpeg" alt="">
 
 
