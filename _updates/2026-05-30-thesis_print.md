@@ -1,4 +1,3 @@
-```markdown
 ---
 date: 2026-05
 # format: "month_year"
