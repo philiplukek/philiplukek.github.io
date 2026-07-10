@@ -35,7 +35,7 @@ In the time that I am not reading, watching, travelling or eating; I try to writ
 <div class="timeline">
 
   <div class="timeline-item">
-    <div class="timeline-date">2025</div>
+    <div class="timeline-date">2026</div>
     <div class="timeline-marker"></div>
     <div class="timeline-content">
       <h3>Ph.D. in Computational Mechanics</h3>

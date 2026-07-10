@@ -1,6 +1,6 @@
 ---
-date: 2026-05
-# format: "month_year"
+date: 2026-05-30
+format: "month_year"
 description: "My PhD thesis"
 ---
 
